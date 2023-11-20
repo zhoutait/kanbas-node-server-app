@@ -13,7 +13,7 @@ import "dotenv/config";
 const app = express();
 app.use(
   cors({
-    origin: "*",
+    origin: ["*", "https://a5--dancing-douhua-9e1ea5.netlify.app"],
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "PATCH", "DELETE"],
     credentials: true,
     optionSuccessStatus: 200,
