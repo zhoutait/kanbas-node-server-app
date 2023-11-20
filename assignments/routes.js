@@ -108,7 +108,15 @@ function AssignMentRoutes(app) {
     assignments.push(newAssignment);
 
     writeAssignmentsFile(assignments);
-    res.json(newAssignment);
+    // res.json(newAssignment);
+    return res.json({
+      statusCode: 200,
+      body: newAssignment,
+      headers: {
+        "Content-Type": "application/JSON",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
   });
 
   // Update an assignment
