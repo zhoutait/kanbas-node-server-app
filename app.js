@@ -13,8 +13,10 @@ import "dotenv/config";
 const app = express();
 app.use(
   cors({
+    origin: "*",
+    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "PATCH", "DELETE"],
     credentials: true,
-    origin: process.env.FRONTEND_URL,
+    optionSuccessStatus: 200,
   })
 );
 app.use(express.json());
