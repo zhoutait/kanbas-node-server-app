@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 const currentModulePath = new URL(import.meta.url).pathname;
-console.log(currentModulePath)
+console.log(currentModulePath);
 const modulesFilePath = path.join(
   path.dirname(currentModulePath),
   "../Database/modules.json"
