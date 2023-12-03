@@ -4,7 +4,7 @@ import express from "express";
 import HelloRoutes from "./hello.js";
 import Lab5 from "./Lab5.js";
 import CourseRoutes from "./courses/routes.js";
-import ModuleRoutes from "./modules/routes.js";
+// import ModuleRoutes from "./modules/routes.js";
 import cors from "cors";
 import AssignMentRoutes from "./assignments/routes.js";
 import TodoRoutes from "./todos/routes.js";
@@ -43,7 +43,7 @@ if (process.env.NODE_ENV !== "development") {
 app.use(session(sessionOptions));
 app.use(express.json());
 
-ModuleRoutes(app);
+// ModuleRoutes(app);
 CourseRoutes(app);
 AssignMentRoutes(app);
 Lab5(app);
