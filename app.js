@@ -19,12 +19,13 @@ mongoose
   .catch((err) => console.log("connection issue", err));
 
 const app = express();
-app.use(
-  cors({
-    credentials: true,
-    origin: "*",
-  })
-);
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: "*",
+//   })
+// );
+app.use(cors());
 app.use(express.json());
 const port = process.env.PORT || 4000;
 
