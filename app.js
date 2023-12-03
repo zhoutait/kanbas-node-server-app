@@ -21,8 +21,8 @@ mongoose
 const app = express();
 app.use(
   cors({
-    credentials: true,
-    origin: process.env.FRONTEND_URL,
+    // credentials: true,
+    origin: "*",
   })
 );
 app.use(express.json());
@@ -33,15 +33,6 @@ const sessionOptions = {
   resave: false,
   saveUnitialized: false,
 };
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL);
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
-
 if (process.env.NODE_ENV !== "development") {
   sessionOptions.proxy = true;
   sessionOptions.cookie = {
