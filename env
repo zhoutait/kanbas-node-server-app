@@ -1,0 +1,3 @@
+NODE_ENV=production
+FRONTEND_URL=http://localhost:3000
+DB_CONNECTION_STRING=mongodb+srv://zhoutait:4zTjDZjOVA0o5bg4@cluster0.bgdadpo.mongodb.net/kanbas?retryWrites=true&w=majority
