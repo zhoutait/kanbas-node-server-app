@@ -1,4 +1,5 @@
 // const express = require("express");
+import "dotenv/config";
 import express from "express";
 import HelloRoutes from "./hello.js";
 import Lab5 from "./Lab5.js";
@@ -8,18 +9,38 @@ import cors from "cors";
 import AssignMentRoutes from "./assignments/routes.js";
 import TodoRoutes from "./todos/routes.js";
 import session from "express-session";
-import "dotenv/config";
+import mongoose from "mongoose";
+import UserRoutes from "./users/routes.js";
+const CONNECTION_STRING =
+  process.env.DB_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kanbas";
+mongoose
+  .connect(CONNECTION_STRING)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.log("connection issue", err));
 
 const app = express();
 app.use(
   cors({
-    origin: "https://a5--dancing-douhua-9e1ea5.netlify.app",
-    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "PATCH", "DELETE"],
     credentials: true,
-    optionSuccessStatus: 200,
+    origin: "*",
   })
 );
+app.use(express.json());
+const port = process.env.PORT || 4000;
 
+const sessionOptions = {
+  secret: "any string",
+  resave: false,
+  saveUnitialized: false,
+};
+if (process.env.NODE_ENV !== "development") {
+  sessionOptions.proxy = true;
+  sessionOptions.cookie = {
+    sameSite: "none",
+    secure: true,
+  };
+}
+app.use(session(sessionOptions));
 app.use(express.json());
 
 ModuleRoutes(app);
@@ -28,5 +49,6 @@ AssignMentRoutes(app);
 Lab5(app);
 TodoRoutes(app);
 HelloRoutes(app);
+UserRoutes(app);
 
 app.listen(process.env.PORT || 4000);
