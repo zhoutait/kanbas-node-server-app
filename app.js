@@ -19,12 +19,22 @@ mongoose
   .catch((err) => console.log("connection issue", err));
 
 const app = express();
-app.use(
-  cors({
-    // credentials: true,
-    origin: "*",
-  })
-);
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: "*",
+//   })
+// );
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://a6--dancing-douhua-9e1ea5.netlify.app"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true"); // if using credentials
+  next();
+});
 app.use(express.json());
 const port = process.env.PORT || 4000;
 
